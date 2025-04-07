@@ -2116,14 +2116,14 @@ Casella</a>:<br>
 
     model SimpleMotor
       "A simple model of an electrical dc motor (based on DriveLib model)."
-      parameter Modelica.SIunits.Resistance Rm=10 "Motor Resistance";
-      parameter Modelica.SIunits.Inductance Lm=1 "Motor Inductance";
+      parameter SI.Resistance Rm=10 "Motor Resistance";
+      parameter SI.Inductance Lm=1 "Motor Inductance";
       parameter Real kT=1 "Torque Constant";
-      parameter Modelica.SIunits.Inertia Jm=10 "Motor Inertia";
+      parameter SI.Inertia Jm=10 "Motor Inertia";
       parameter Real dm(
         final unit="N.m.s/rad",
         final min=0) = 0 "Damping constant";
-      Modelica.SIunits.Conversions.NonSIunits.AngularVelocity_rpm n;
+      NonSI.AngularVelocity_rpm n;
       Modelica.Electrical.Analog.Sources.SignalVoltage Vs annotation (Placement(
             transformation(
             origin={-70,0},
@@ -2151,7 +2151,7 @@ Casella</a>:<br>
             extent={{-10,-10},{10,10}},
             rotation=90)));
     equation
-      n = Modelica.SIunits.Conversions.to_rpm(J.w);
+      n = Conversions.to_rpm(J.w);
       connect(R.n, L.p) annotation (Line(points={{-40,40},{-20,40}}));
       connect(L.n, emf.p) annotation (Line(points={{0,40},{10,40},{10,10}}));
       connect(emf.flange, J.flange_a) annotation (Line(points={{20,0},{48,0}}));
@@ -4794,7 +4794,7 @@ This model tests a simple power plant based on a <tt>GTunit</tt>.
             Modelica.Media.Air.SimpleAir) annotation (Placement(transformation(
               extent={{-98,-10},{-78,10}}, rotation=0)));
       Modelica.Mechanics.Rotational.Sources.ConstantSpeed ConstantSpeed1(
-          w_fixed=Modelica.SIunits.Conversions.from_rpm(590), useSupport=false)
+          w_fixed=Conversions.from_rpm(590), useSupport=false)
         annotation (Placement(transformation(extent={{90,-10},{70,10}},
               rotation=0)));
       function flowChar = Functions.FanCharacteristics.quadraticFlowBlades (
@@ -4819,7 +4819,7 @@ This model tests a simple power plant based on a <tt>GTunit</tt>.
         offset=1) annotation (Placement(transformation(extent={{-30,54},{-10,74}},
               rotation=0)));
       Modelica.Mechanics.Rotational.Components.Inertia Inertia1(w(start=
-              Modelica.SIunits.Conversions.from_rpm(590)), J=10000,
+              Conversions.from_rpm(590)), J=10000,
         phi(fixed=true, start=0))                                   annotation (
          Placement(transformation(extent={{-20,-10},{0,10}}, rotation=0)));
       Gas.PressDrop PressDrop1(
@@ -4881,24 +4881,24 @@ This model tests a simple power plant based on a <tt>GTunit</tt>.
       replaceable package Medium = Modelica.Media.Water.WaterIF97_ph
         constrainedby Modelica.Media.Interfaces.PartialMedium;
       parameter Integer Nnodes=20 "Number of nodes";
-      parameter Modelica.SIunits.Length Lhex=10 "Total length";
-      parameter Modelica.SIunits.Diameter Dihex=0.02 "Internal diameter";
-      final parameter Modelica.SIunits.Radius rhex=Dihex/2 "Internal radius";
-      final parameter Modelica.SIunits.Length omegahex=Modelica.Constants.pi*Dihex
+      parameter SI.Length Lhex=10 "Total length";
+      parameter SI.Diameter Dihex=0.02 "Internal diameter";
+      final parameter SI.Radius rhex=Dihex/2 "Internal radius";
+      final parameter SI.Length omegahex=Modelica.Constants.pi*Dihex
         "Internal perimeter";
-      final parameter Modelica.SIunits.Area Ahex=Modelica.Constants.pi*rhex^2
+      final parameter SI.Area Ahex=Modelica.Constants.pi*rhex^2
         "Internal cross section";
       parameter Real Cfhex=0.005 "Friction coefficient";
-      parameter Modelica.SIunits.MassFlowRate whex=0.31
+      parameter SI.MassFlowRate whex=0.31
         "Nominal mass flow rate";
-      parameter Modelica.SIunits.Pressure phex=2e5 "Initial pressure";
-      parameter Modelica.SIunits.SpecificEnthalpy hinhex=1e5
+      parameter SI.Pressure phex=2e5 "Initial pressure";
+      parameter SI.SpecificEnthalpy hinhex=1e5
         "Initial inlet specific enthalpy";
-      parameter Modelica.SIunits.SpecificEnthalpy houthex=1e5
+      parameter SI.SpecificEnthalpy houthex=1e5
         "Initial outlet specific enthalpy";
-      parameter Modelica.SIunits.SpecificEnthalpy deltah=41800
+      parameter SI.SpecificEnthalpy deltah=41800
         "Height of enthalpy step";
-      parameter Modelica.SIunits.EnergyFlowRate W=41800*whex
+      parameter SI.EnergyFlowRate W=41800*whex
         "Height of power step";
 
       SI.Time tau "Transport time delay";
@@ -5023,20 +5023,20 @@ This model tests a simple power plant based on a <tt>GTunit</tt>.
         constrainedby Modelica.Media.Interfaces.PartialMedium;
       parameter Integer Nnodes=10 "Number of nodes";
       parameter Integer Nt = 5 "Number of tubes";
-      parameter Modelica.SIunits.Length Lhex=2 "Total length";
-      parameter Modelica.SIunits.Diameter Dihex=0.02 "Internal diameter";
-      final parameter Modelica.SIunits.Radius rhex=Dihex/2 "Internal radius";
-      final parameter Modelica.SIunits.Length omegahex=Modelica.Constants.pi*Dihex
+      parameter SI.Length Lhex=2 "Total length";
+      parameter SI.Diameter Dihex=0.02 "Internal diameter";
+      final parameter SI.Radius rhex=Dihex/2 "Internal radius";
+      final parameter SI.Length omegahex=Modelica.Constants.pi*Dihex
         "Internal perimeter";
-      final parameter Modelica.SIunits.Area Ahex=Modelica.Constants.pi*rhex^2
+      final parameter SI.Area Ahex=Modelica.Constants.pi*rhex^2
         "Internal cross section";
       parameter Real Cfhex=0.005 "Friction coefficient";
-      parameter Modelica.SIunits.MassFlowRate whex=0.31
+      parameter SI.MassFlowRate whex=0.31
         "Nominal mass flow rate";
-      parameter Modelica.SIunits.Pressure phex=3e5 "Initial pressure";
-      parameter Modelica.SIunits.SpecificEnthalpy hs=1e5
+      parameter SI.Pressure phex=3e5 "Initial pressure";
+      parameter SI.SpecificEnthalpy hs=1e5
         "Initial inlet specific enthalpy";
-      parameter Modelica.SIunits.CoefficientOfHeatTransfer gamma = 1500
+      parameter SI.CoefficientOfHeatTransfer gamma = 1500
         "Fixed heat transfer coefficient";
       Real cp = Medium.specificHeatCapacityCp(hex.fluidState[1]);
       Real NTU = (Nt*Lhex*Dihex*3.1415*gamma)/(whex*Medium.specificHeatCapacityCp(hex.fluidState[1]))
@@ -5147,18 +5147,18 @@ This model tests a simple power plant based on a <tt>GTunit</tt>.
         constrainedby Modelica.Media.Interfaces.PartialMedium;
       parameter Integer Nnodes=5 "number of Nodes";
       parameter Integer Nt = 10 "number of tubes in parallel";
-      parameter Modelica.SIunits.Length Lhex=10 "total length";
-      parameter Modelica.SIunits.Diameter Dihex=0.02 "internal diameter";
-      parameter Modelica.SIunits.Radius rhex=Dihex/2 "internal radius";
-      parameter Modelica.SIunits.Length omegahex=Modelica.Constants.pi*Dihex
+      parameter SI.Length Lhex=10 "total length";
+      parameter SI.Diameter Dihex=0.02 "internal diameter";
+      parameter SI.Radius rhex=Dihex/2 "internal radius";
+      parameter SI.Length omegahex=Modelica.Constants.pi*Dihex
         "internal perimeter";
-      parameter Modelica.SIunits.Area Ahex=Modelica.Constants.pi*rhex^2
+      parameter SI.Area Ahex=Modelica.Constants.pi*rhex^2
         "internal cross section";
       parameter Real Cfhex=0.005 "friction coefficient";
-      parameter Modelica.SIunits.MassFlowRate whex=1e-2
+      parameter SI.MassFlowRate whex=1e-2
         "nominal mass flow rate";
-      parameter Modelica.SIunits.Pressure phex=0.2e5 "initial pressure";
-      parameter Modelica.SIunits.SpecificEnthalpy hs=2.971e6
+      parameter SI.Pressure phex=0.2e5 "initial pressure";
+      parameter SI.SpecificEnthalpy hs=2.971e6
         "initial specific enthalpy";
       Real gamma = Medium.specificHeatCapacityCp(hex.fluidState[1])/Medium.specificHeatCapacityCv(hex.fluidState[1]) "cp/cv";
       Real dMtot_dp = hex.Mtot/(hex.p*gamma) "compressibility";
@@ -5258,24 +5258,24 @@ This model tests a simple power plant based on a <tt>GTunit</tt>.
       replaceable package Medium = Modelica.Media.Water.WaterIF97OnePhase_ph
         constrainedby Modelica.Media.Interfaces.PartialMedium;
       parameter Integer Nnodes=20 "number of nodes";
-      parameter Modelica.SIunits.Length Lhex=200 "total length";
-      parameter Modelica.SIunits.Diameter Dihex=0.02
+      parameter SI.Length Lhex=200 "total length";
+      parameter SI.Diameter Dihex=0.02
         "diameter of internal tube";
-      parameter Modelica.SIunits.Diameter Dehex=0.04
+      parameter SI.Diameter Dehex=0.04
         "diameter of external tube";
-      parameter Modelica.SIunits.Length omegahex=Modelica.Constants.pi*Dihex
+      parameter SI.Length omegahex=Modelica.Constants.pi*Dihex
         "wet perimeter of the tube interface";
-      parameter Modelica.SIunits.Area Aint=Modelica.Constants.pi*Dihex^2/4
+      parameter SI.Area Aint=Modelica.Constants.pi*Dihex^2/4
         "cross section of internal tube";
-      parameter Modelica.SIunits.Area Aext=Modelica.Constants.pi*Dehex^2/4 - Aint
+      parameter SI.Area Aext=Modelica.Constants.pi*Dehex^2/4 - Aint
         "cross section of external tube";
       parameter Real Cfhex=0.005 "friction coefficient";
-      parameter Modelica.SIunits.MassFlowRate whex=0.31
+      parameter SI.MassFlowRate whex=0.31
         "nominal (and initial) mass flow rate";
-      parameter Modelica.SIunits.Pressure phex=3e5 "initial pressure";
-      parameter Modelica.SIunits.SpecificEnthalpy hinhex=1e5
+      parameter SI.Pressure phex=3e5 "initial pressure";
+      parameter SI.SpecificEnthalpy hinhex=1e5
         "initial inlet specific enthalpy";
-      parameter Modelica.SIunits.SpecificEnthalpy houthex=1e5
+      parameter SI.SpecificEnthalpy houthex=1e5
         "initial outlet specific enthalpy";
 
       Water.SinkPressure      SideA_FluidSink annotation (Placement(
@@ -5439,30 +5439,30 @@ This model tests a simple power plant based on a <tt>GTunit</tt>.
       replaceable package Medium = Modelica.Media.Water.WaterIF97OnePhase_ph
         constrainedby Modelica.Media.Interfaces.PartialMedium;
       parameter Integer Nnodes=20 "number of nodes";
-      parameter Modelica.SIunits.Length Lhex=200 "total length";
-      parameter Modelica.SIunits.Diameter Dihex=0.02
+      parameter SI.Length Lhex=200 "total length";
+      parameter SI.Diameter Dihex=0.02
         "diameter of internal tube";
-      parameter Modelica.SIunits.Diameter Dehex= 0.04
+      parameter SI.Diameter Dehex= 0.04
         "diameter of external tube";
-      parameter Modelica.SIunits.Length th = 0.002 "tube wall thickness";
-      parameter Modelica.SIunits.Radius rint=Dihex/2
+      parameter SI.Length th = 0.002 "tube wall thickness";
+      parameter SI.Radius rint=Dihex/2
         "internal radius tube walls";
-      parameter Modelica.SIunits.Radius rext=rint+th
+      parameter SI.Radius rext=rint+th
         "internal radius tube walls";
-      parameter Modelica.SIunits.Length omegaint=Modelica.Constants.pi*Dihex
+      parameter SI.Length omegaint=Modelica.Constants.pi*Dihex
         "wet perimeter internal tube";
-      parameter Modelica.SIunits.Length omegaext=Modelica.Constants.pi*(Dihex+2*th)
+      parameter SI.Length omegaext=Modelica.Constants.pi*(Dihex+2*th)
         "wet perimeter internal tube";
-      parameter Modelica.SIunits.Area Aint=Modelica.Constants.pi*rint^2;
-      parameter Modelica.SIunits.Area Aext=Modelica.Constants.pi*Dehex^2/4 -
+      parameter SI.Area Aint=Modelica.Constants.pi*rint^2;
+      parameter SI.Area Aext=Modelica.Constants.pi*Dehex^2/4 -
                                            Modelica.Constants.pi*rext^2;
       parameter Real Cfhex=0.005 "friction coefficient";
-      parameter Modelica.SIunits.MassFlowRate whex=0.31
+      parameter SI.MassFlowRate whex=0.31
         "nominal (and initial) mass flow rate";
-      parameter Modelica.SIunits.Pressure phex=3e5 "initial pressure";
-      parameter Modelica.SIunits.SpecificEnthalpy hinhex=1e5
+      parameter SI.Pressure phex=3e5 "initial pressure";
+      parameter SI.SpecificEnthalpy hinhex=1e5
         "initial inlet specific enthalpy";
-      parameter Modelica.SIunits.SpecificEnthalpy houthex=1e5
+      parameter SI.SpecificEnthalpy houthex=1e5
         "initial outlet specific enthalpy";
 
       Water.SinkPressure      SideA_FluidSink annotation (Placement(
@@ -5640,18 +5640,18 @@ This model tests a simple power plant based on a <tt>GTunit</tt>.
       replaceable package Medium = Modelica.Media.Water.WaterIF97OnePhase_ph
         constrainedby Modelica.Media.Interfaces.PartialMedium;
       parameter Integer Nnodes=10 "number of Nodes";
-      parameter Modelica.SIunits.Length Lhex=10 "total length";
-      parameter Modelica.SIunits.Diameter Dihex=0.02 "internal diameter";
-      parameter Modelica.SIunits.Radius rhex=Dihex/2 "internal radius";
-      parameter Modelica.SIunits.Length omegahex=Modelica.Constants.pi*Dihex
+      parameter SI.Length Lhex=10 "total length";
+      parameter SI.Diameter Dihex=0.02 "internal diameter";
+      parameter SI.Radius rhex=Dihex/2 "internal radius";
+      parameter SI.Length omegahex=Modelica.Constants.pi*Dihex
         "internal perimeter";
-      parameter Modelica.SIunits.Area Ahex=Modelica.Constants.pi*rhex^2
+      parameter SI.Area Ahex=Modelica.Constants.pi*rhex^2
         "internal cross-section";
       parameter Real Cfhex=0.005 "friction coefficient";
-      parameter Modelica.SIunits.MassFlowRate whex=0.31
+      parameter SI.MassFlowRate whex=0.31
         "nominal mass flow rate";
-      parameter Modelica.SIunits.Pressure phex=3e5 "initial pressure";
-      parameter Modelica.SIunits.SpecificEnthalpy hs=1e5
+      parameter SI.Pressure phex=3e5 "initial pressure";
+      parameter SI.SpecificEnthalpy hs=1e5
         "initial inlet specific enthalpy";
 
       Water.Flow1DFV hexFV(
@@ -5942,31 +5942,31 @@ This model tests a simple power plant based on a <tt>GTunit</tt>.
       // number of Nodes
       parameter Integer Nnodes=12;
       // total length
-      parameter Modelica.SIunits.Length Lhex=10;
+      parameter SI.Length Lhex=10;
       // internal diameter
-      parameter Modelica.SIunits.Diameter Dihex=0.02;
+      parameter SI.Diameter Dihex=0.02;
       // internal radius
-      parameter Modelica.SIunits.Radius rhex=Dihex/2;
+      parameter SI.Radius rhex=Dihex/2;
       // internal perimeter
-      parameter Modelica.SIunits.Length omegahex=Modelica.Constants.pi*Dihex;
+      parameter SI.Length omegahex=Modelica.Constants.pi*Dihex;
       // internal cross section
-      parameter Modelica.SIunits.Area Ahex=Modelica.Constants.pi*rhex^2;
+      parameter SI.Area Ahex=Modelica.Constants.pi*rhex^2;
       // friction coefficient
       parameter Real Cfhex=0.005;
       // nominal (and initial) mass flow rate
-      parameter Modelica.SIunits.MassFlowRate whex=0.3;
+      parameter SI.MassFlowRate whex=0.3;
       // initial pressure
-      parameter Modelica.SIunits.Pressure phex=2e5;
+      parameter SI.Pressure phex=2e5;
       // initial inlet specific enthalpy
-      parameter Modelica.SIunits.SpecificEnthalpy hinhex=1e5;
+      parameter SI.SpecificEnthalpy hinhex=1e5;
       // initial outlet specific enthalpy
-      parameter Modelica.SIunits.SpecificEnthalpy houthex=1e5;
+      parameter SI.SpecificEnthalpy houthex=1e5;
 
       //height of enthalpy step
-      parameter Modelica.SIunits.SpecificEnthalpy deltah=41800;
+      parameter SI.SpecificEnthalpy deltah=41800;
 
       //height of power step
-      parameter Modelica.SIunits.EnergyFlowRate W=41800*whex;
+      parameter SI.EnergyFlowRate W=41800*whex;
 
       ThermoPower.Water.SourceMassFlow Fluid_Source(
         redeclare package Medium = Medium,
@@ -6096,23 +6096,23 @@ Algorithm Tolerance = 1e-6
       // number of Nodes
       parameter Integer Nnodes=12;
       // total length
-      parameter Modelica.SIunits.Length Lhex=200;
+      parameter SI.Length Lhex=200;
       // internal diameter
-      parameter Modelica.SIunits.Diameter Dihex=0.02;
+      parameter SI.Diameter Dihex=0.02;
       // internal radius
-      parameter Modelica.SIunits.Radius rhex=Dihex/2;
+      parameter SI.Radius rhex=Dihex/2;
       // internal perimeter
-      parameter Modelica.SIunits.Length omegahex=Modelica.Constants.pi*Dihex;
+      parameter SI.Length omegahex=Modelica.Constants.pi*Dihex;
       // internal cross section
-      parameter Modelica.SIunits.Area Ahex=Modelica.Constants.pi*rhex^2;
+      parameter SI.Area Ahex=Modelica.Constants.pi*rhex^2;
       // friction coefficient
       parameter Real Cfhex=0.005;
       // nominal (and initial) mass flow rate
-      parameter Modelica.SIunits.MassFlowRate whex=0.31;
+      parameter SI.MassFlowRate whex=0.31;
       // initial pressure
-      parameter Modelica.SIunits.Pressure phex=3e5;
+      parameter SI.Pressure phex=3e5;
       // initial inlet specific enthalpy
-      parameter Modelica.SIunits.SpecificEnthalpy hs=1e5;
+      parameter SI.SpecificEnthalpy hs=1e5;
       Water.Flow1DFEM hex(
         redeclare package Medium = Medium,
         N=Nnodes,
@@ -6236,23 +6236,23 @@ Algorithm Tolerance = 1e-6
       // number of Nodes
       parameter Integer Nnodes=12;
       // total length
-      parameter Modelica.SIunits.Length Lhex=200;
+      parameter SI.Length Lhex=200;
       // internal diameter
-      parameter Modelica.SIunits.Diameter Dihex=0.02;
+      parameter SI.Diameter Dihex=0.02;
       // internal radius
-      parameter Modelica.SIunits.Radius rhex=Dihex/2;
+      parameter SI.Radius rhex=Dihex/2;
       // internal perimeter
-      parameter Modelica.SIunits.Length omegahex=Modelica.Constants.pi*Dihex;
+      parameter SI.Length omegahex=Modelica.Constants.pi*Dihex;
       // internal cross section
-      parameter Modelica.SIunits.Area Ahex=Modelica.Constants.pi*rhex^2;
+      parameter SI.Area Ahex=Modelica.Constants.pi*rhex^2;
       // friction coefficient
       parameter Real Cfhex=0.005;
       // nominal (and initial) mass flow rate
-      parameter Modelica.SIunits.MassFlowRate whex=0.3;
+      parameter SI.MassFlowRate whex=0.3;
       // initial pressure
-      parameter Modelica.SIunits.Pressure phex=1e5;
+      parameter SI.Pressure phex=1e5;
       // initial specific enthalpy
-      parameter Modelica.SIunits.SpecificEnthalpy hs=1e5;
+      parameter SI.SpecificEnthalpy hs=1e5;
       Water.Flow1DFEM hex(
         redeclare package Medium = Medium,
         N=Nnodes,
@@ -6370,23 +6370,23 @@ Algorithm Tolerance = 1e-6
       // number of Nodes
       parameter Integer Nnodes=12;
       // total length
-      parameter Modelica.SIunits.Length Lhex=10;
+      parameter SI.Length Lhex=10;
       // internal diameter
-      parameter Modelica.SIunits.Diameter Dihex=0.02;
+      parameter SI.Diameter Dihex=0.02;
       // internal radius
-      parameter Modelica.SIunits.Radius rhex=Dihex/2;
+      parameter SI.Radius rhex=Dihex/2;
       // internal perimeter
-      parameter Modelica.SIunits.Length omegahex=Modelica.Constants.pi*Dihex;
+      parameter SI.Length omegahex=Modelica.Constants.pi*Dihex;
       // internal cross section
-      parameter Modelica.SIunits.Area Ahex=Modelica.Constants.pi*rhex^2;
+      parameter SI.Area Ahex=Modelica.Constants.pi*rhex^2;
       // friction coefficient
       parameter Real Cfhex=0.005;
       // nominal (and initial) mass flow rate
-      parameter Modelica.SIunits.MassFlowRate whex=1e-2;
+      parameter SI.MassFlowRate whex=1e-2;
       // initial pressure
-      parameter Modelica.SIunits.Pressure phex=0.2e5;
+      parameter SI.Pressure phex=0.2e5;
       // initial specific enthalpy
-      parameter Modelica.SIunits.SpecificEnthalpy hs=3e6;
+      parameter SI.SpecificEnthalpy hs=3e6;
       Water.Flow1DFEM hex(
         redeclare package Medium = Medium,
         N=Nnodes,
@@ -6489,25 +6489,25 @@ Algorithm Tolerance = 1e-6
       // number of Nodes
       parameter Integer Nnodes=12;
       // total length
-      parameter Modelica.SIunits.Length Lhex=200;
+      parameter SI.Length Lhex=200;
       // internal diameter
-      parameter Modelica.SIunits.Diameter Dihex=0.02;
+      parameter SI.Diameter Dihex=0.02;
       // internal radius
-      parameter Modelica.SIunits.Radius rhex=Dihex/2;
+      parameter SI.Radius rhex=Dihex/2;
       // internal perimeter
-      parameter Modelica.SIunits.Length omegahex=Modelica.Constants.pi*Dihex;
+      parameter SI.Length omegahex=Modelica.Constants.pi*Dihex;
       // internal cross section
-      parameter Modelica.SIunits.Area Ahex=Modelica.Constants.pi*rhex^2;
+      parameter SI.Area Ahex=Modelica.Constants.pi*rhex^2;
       // friction coefficient
       parameter Real Cfhex=0.005;
       // nominal (and initial) mass flow rate
-      parameter Modelica.SIunits.MassFlowRate whex=0.31;
+      parameter SI.MassFlowRate whex=0.31;
       // initial pressure
-      parameter Modelica.SIunits.Pressure phex=3e5;
+      parameter SI.Pressure phex=3e5;
       // initial inlet specific enthalpy
-      parameter Modelica.SIunits.SpecificEnthalpy hinhex=1e5;
+      parameter SI.SpecificEnthalpy hinhex=1e5;
       // initial outlet specific enthalpy
-      parameter Modelica.SIunits.SpecificEnthalpy houthex=1e5;
+      parameter SI.SpecificEnthalpy houthex=1e5;
       Water.Flow1DFEM hexA(
         N=Nnodes,
         Nt=1,
@@ -6698,25 +6698,25 @@ Casella</a>:<br>
       // number of Nodes
       parameter Integer Nnodes=16;
       // total length
-      parameter Modelica.SIunits.Length Lhex=200;
+      parameter SI.Length Lhex=200;
       // internal diameter
-      parameter Modelica.SIunits.Diameter Dihex=0.02;
+      parameter SI.Diameter Dihex=0.02;
       // internal radius
-      parameter Modelica.SIunits.Radius rhex=Dihex/2;
+      parameter SI.Radius rhex=Dihex/2;
       // internal perimeter
-      parameter Modelica.SIunits.Length omegahex=Modelica.Constants.pi*Dihex;
+      parameter SI.Length omegahex=Modelica.Constants.pi*Dihex;
       // internal cross section
-      parameter Modelica.SIunits.Area Ahex=Modelica.Constants.pi*rhex^2;
+      parameter SI.Area Ahex=Modelica.Constants.pi*rhex^2;
       // friction coefficient
       parameter Real Cfhex=0.005;
       // nominal (and initial) mass flow rate
-      parameter Modelica.SIunits.MassFlowRate whex=0.31;
+      parameter SI.MassFlowRate whex=0.31;
       // initial pressure
-      parameter Modelica.SIunits.Pressure phex=3e5;
+      parameter SI.Pressure phex=3e5;
       // initial inlet specific enthalpy
-      parameter Modelica.SIunits.SpecificEnthalpy hinhex=1e5;
+      parameter SI.SpecificEnthalpy hinhex=1e5;
       // initial outlet specific enthalpy
-      parameter Modelica.SIunits.SpecificEnthalpy houthex=1e5;
+      parameter SI.SpecificEnthalpy houthex=1e5;
       Water.Flow1DFEM hexA(
         N=Nnodes,
         Nt=1,
@@ -9284,20 +9284,20 @@ Casella</a>:<br>
         constrainedby Modelica.Media.Interfaces.PartialPureSubstance;
       parameter Integer Nnodes=4 "Number of nodes";
       parameter Integer Nt = 5 "Number of tubes";
-      parameter Modelica.SIunits.Length Lhex=2 "Total length";
-      parameter Modelica.SIunits.Diameter Dihex=0.02 "Internal diameter";
-      final parameter Modelica.SIunits.Radius rhex=Dihex/2 "Internal radius";
-      final parameter Modelica.SIunits.Length omegahex=Modelica.Constants.pi*Dihex
+      parameter SI.Length Lhex=2 "Total length";
+      parameter SI.Diameter Dihex=0.02 "Internal diameter";
+      final parameter SI.Radius rhex=Dihex/2 "Internal radius";
+      final parameter SI.Length omegahex=Modelica.Constants.pi*Dihex
         "Internal perimeter";
-      final parameter Modelica.SIunits.Area Ahex=Modelica.Constants.pi*rhex^2
+      final parameter SI.Area Ahex=Modelica.Constants.pi*rhex^2
         "Internal cross section";
       parameter Real Cfhex=0.005 "Friction coefficient";
-      parameter Modelica.SIunits.MassFlowRate whex=0.31
+      parameter SI.MassFlowRate whex=0.31
         "Nominal mass flow rate";
-      parameter Modelica.SIunits.Pressure phex=3e5 "Initial pressure";
-      parameter Modelica.SIunits.SpecificEnthalpy hs=Medium.specificEnthalpy_pT(phex,293.15)
+      parameter SI.Pressure phex=3e5 "Initial pressure";
+      parameter SI.SpecificEnthalpy hs=Medium.specificEnthalpy_pT(phex,293.15)
         "Initial inlet specific enthalpy";
-      parameter Modelica.SIunits.CoefficientOfHeatTransfer gamma = 5000
+      parameter SI.CoefficientOfHeatTransfer gamma = 5000
         "Fixed heat transfer coefficient";
       Real cp = Medium.specificHeatCapacityCp(hex.fluidState[1]);
       Real NTU = (Nt*Lhex*Dihex*3.1415*gamma)/(whex*Medium.specificHeatCapacityCp(hex.fluidState[1]))
@@ -9421,23 +9421,23 @@ Casella</a>:<br>
         // number of Nodes
         parameter Integer Nnodes=10;
         // total length
-        parameter Modelica.SIunits.Length Lhex=200;
+        parameter SI.Length Lhex=200;
         // internal diameter
-        parameter Modelica.SIunits.Diameter Dihex=0.02;
+        parameter SI.Diameter Dihex=0.02;
         // internal radius
-        parameter Modelica.SIunits.Radius rhex=Dihex/2;
+        parameter SI.Radius rhex=Dihex/2;
         // internal perimeter
-        parameter Modelica.SIunits.Length omegahex=Modelica.Constants.pi*Dihex;
+        parameter SI.Length omegahex=Modelica.Constants.pi*Dihex;
         // internal cross section
-        parameter Modelica.SIunits.Area Ahex=Modelica.Constants.pi*rhex^2;
+        parameter SI.Area Ahex=Modelica.Constants.pi*rhex^2;
         // friction coefficient
         parameter Real Cfhex=0.005;
         // nominal (and initial) mass flow rate
-        parameter Modelica.SIunits.MassFlowRate whex=0.31;
+        parameter SI.MassFlowRate whex=0.31;
         // initial pressure
-        parameter Modelica.SIunits.Pressure phex=3e5;
+        parameter SI.Pressure phex=3e5;
         // initial inlet specific enthalpy
-        parameter Modelica.SIunits.SpecificEnthalpy hs=1e5;
+        parameter SI.SpecificEnthalpy hs=1e5;
         Water.Flow1D hex(
           N=Nnodes,
           L=Lhex,
@@ -9546,23 +9546,23 @@ Algorithm Tolerance = 1e-6
         // number of Nodes
         parameter Integer Nnodes=20;
         // total length
-        parameter Modelica.SIunits.Length Lhex=10;
+        parameter SI.Length Lhex=10;
         // internal diameter
-        parameter Modelica.SIunits.Diameter Dihex=0.02;
+        parameter SI.Diameter Dihex=0.02;
         // internal radius
-        parameter Modelica.SIunits.Radius rhex=Dihex/2;
+        parameter SI.Radius rhex=Dihex/2;
         // internal perimeter
-        parameter Modelica.SIunits.Length omegahex=Modelica.Constants.pi*Dihex;
+        parameter SI.Length omegahex=Modelica.Constants.pi*Dihex;
         // internal cross section
-        parameter Modelica.SIunits.Area Ahex=Modelica.Constants.pi*rhex^2;
+        parameter SI.Area Ahex=Modelica.Constants.pi*rhex^2;
         // friction coefficient
         parameter Real Cfhex=0.005;
         // nominal (and initial) mass flow rate
-        parameter Modelica.SIunits.MassFlowRate whex=1e-2;
+        parameter SI.MassFlowRate whex=1e-2;
         // initial pressure
-        parameter Modelica.SIunits.Pressure phex=0.2e5;
+        parameter SI.Pressure phex=0.2e5;
         // initial specific enthalpy
-        parameter Modelica.SIunits.SpecificEnthalpy hs=3e6;
+        parameter SI.SpecificEnthalpy hs=3e6;
         // Time constant
         SI.Time tau;
 
@@ -9673,25 +9673,25 @@ Algorithm Tolerance = 1e-6
         // number of Nodes
         parameter Integer Nnodes=20;
         // total length
-        parameter Modelica.SIunits.Length Lhex=200;
+        parameter SI.Length Lhex=200;
         // internal diameter
-        parameter Modelica.SIunits.Diameter Dihex=0.02;
+        parameter SI.Diameter Dihex=0.02;
         // internal radius
-        parameter Modelica.SIunits.Radius rhex=Dihex/2;
+        parameter SI.Radius rhex=Dihex/2;
         // internal perimeter
-        parameter Modelica.SIunits.Length omegahex=Modelica.Constants.pi*Dihex;
+        parameter SI.Length omegahex=Modelica.Constants.pi*Dihex;
         // internal cross section
-        parameter Modelica.SIunits.Area Ahex=Modelica.Constants.pi*rhex^2;
+        parameter SI.Area Ahex=Modelica.Constants.pi*rhex^2;
         // friction coefficient
         parameter Real Cfhex=0.005;
         // nominal (and initial) mass flow rate
-        parameter Modelica.SIunits.MassFlowRate whex=0.31;
+        parameter SI.MassFlowRate whex=0.31;
         // initial pressure
-        parameter Modelica.SIunits.Pressure phex=3e5;
+        parameter SI.Pressure phex=3e5;
         // initial inlet specific enthalpy
-        parameter Modelica.SIunits.SpecificEnthalpy hinhex=1e5;
+        parameter SI.SpecificEnthalpy hinhex=1e5;
         // initial outlet specific enthalpy
-        parameter Modelica.SIunits.SpecificEnthalpy houthex=1e5;
+        parameter SI.SpecificEnthalpy houthex=1e5;
         Water.Flow1D hexA(
           N=Nnodes,
           Nt=1,
@@ -9865,25 +9865,25 @@ Algorithm Tolerance = 1e-6
         // number of Nodes
         parameter Integer Nnodes=20;
         // total length
-        parameter Modelica.SIunits.Length Lhex=200;
+        parameter SI.Length Lhex=200;
         // internal diameter
-        parameter Modelica.SIunits.Diameter Dihex=0.02;
+        parameter SI.Diameter Dihex=0.02;
         // internal radius
-        parameter Modelica.SIunits.Radius rhex=Dihex/2;
+        parameter SI.Radius rhex=Dihex/2;
         // internal perimeter
-        parameter Modelica.SIunits.Length omegahex=Modelica.Constants.pi*Dihex;
+        parameter SI.Length omegahex=Modelica.Constants.pi*Dihex;
         // internal cross section
-        parameter Modelica.SIunits.Area Ahex=Modelica.Constants.pi*rhex^2;
+        parameter SI.Area Ahex=Modelica.Constants.pi*rhex^2;
         // friction coefficient
         parameter Real Cfhex=0.005;
         // nominal (and initial) mass flow rate
-        parameter Modelica.SIunits.MassFlowRate whex=0.31;
+        parameter SI.MassFlowRate whex=0.31;
         // initial pressure
-        parameter Modelica.SIunits.Pressure phex=3e5;
+        parameter SI.Pressure phex=3e5;
         // initial inlet specific enthalpy
-        parameter Modelica.SIunits.SpecificEnthalpy hinhex=1e5;
+        parameter SI.SpecificEnthalpy hinhex=1e5;
         // initial outlet specific enthalpy
-        parameter Modelica.SIunits.SpecificEnthalpy houthex=1e5;
+        parameter SI.SpecificEnthalpy houthex=1e5;
         Water.Flow1D hexA(
           N=Nnodes,
           Nt=1,
@@ -10156,23 +10156,23 @@ Algorithm Tolerance = 1e-6
         // number of Nodes
         parameter Integer Nnodes=20;
         // total length
-        parameter Modelica.SIunits.Length Lhex=200;
+        parameter SI.Length Lhex=200;
         // internal diameter
-        parameter Modelica.SIunits.Diameter Dihex=0.02;
+        parameter SI.Diameter Dihex=0.02;
         // internal radius
-        parameter Modelica.SIunits.Radius rhex=Dihex/2;
+        parameter SI.Radius rhex=Dihex/2;
         // internal perimeter
-        parameter Modelica.SIunits.Length omegahex=Modelica.Constants.pi*Dihex;
+        parameter SI.Length omegahex=Modelica.Constants.pi*Dihex;
         // internal cross section
-        parameter Modelica.SIunits.Area Ahex=Modelica.Constants.pi*rhex^2;
+        parameter SI.Area Ahex=Modelica.Constants.pi*rhex^2;
         // friction coefficient
         parameter Real Cfhex=0.005;
         // nominal (and initial) mass flow rate
-        parameter Modelica.SIunits.MassFlowRate whex=0.31;
+        parameter SI.MassFlowRate whex=0.31;
         // initial pressure
-        parameter Modelica.SIunits.Pressure phex=3e5;
+        parameter SI.Pressure phex=3e5;
         // initial inlet specific enthalpy
-        parameter Modelica.SIunits.SpecificEnthalpy hs=1e5;
+        parameter SI.SpecificEnthalpy hs=1e5;
         Water.Flow1DDB hex(
           N=Nnodes,
           L=Lhex,
